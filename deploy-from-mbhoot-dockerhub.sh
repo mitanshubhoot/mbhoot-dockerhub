@@ -95,7 +95,7 @@ services:
       DATABASE_URL: postgresql://dsalta:\${POSTGRES_PASSWORD:-dsalta_secure_password}@postgres:5432/dsalta_vendor_db
       
       # Kafka Configuration
-      KAFKA_BROKERS: \${KAFKA_BROKERS:-35.193.62.145:29092,35.193.62.145:29093,35.193.62.145:29094}
+      KAFKA_BROKERS: \${KAFKA_BROKERS:-35.225.196.0:9094}
       KAFKA_USERNAME: \${KAFKA_USERNAME:-dsalta}
       KAFKA_PASSWORD: \${KAFKA_PASSWORD:-Dsalta@Toronto.}
       KAFKA_SSL_ENABLED: \${KAFKA_SSL_ENABLED:-true}
@@ -155,7 +155,7 @@ if [ ! -f ".env" ]; then
 POSTGRES_PASSWORD=dsalta_secure_password
 
 # Kafka Configuration (GCP)
-KAFKA_BROKERS=35.193.62.145:29092,35.193.62.145:29093,35.193.62.145:29094
+KAFKA_BROKERS=35.225.196.0:9094
 KAFKA_USERNAME=dsalta
 KAFKA_PASSWORD=Dsalta@Toronto.
 KAFKA_SSL_ENABLED=true
