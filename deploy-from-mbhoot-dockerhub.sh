@@ -134,7 +134,7 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
-    command: ["node", "subdomain-scanner/kafka-consumer.js"]
+    command: ["node", "kafka-consumer.js"]
     networks:
       - dsalta-network
 
