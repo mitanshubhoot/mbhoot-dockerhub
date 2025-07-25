@@ -23,6 +23,7 @@ echo -e "${BLUE}📥 Pulling images...${NC}"
 docker pull $REPOSITORY-api:$VERSION
 docker pull $REPOSITORY-consumer:$VERSION
 docker pull postgres:15-alpine
+docker pull redis:7-alpine
 
 # Create docker-compose.yml if it doesn't exist
 if [ ! -f "docker-compose.yml" ]; then
@@ -31,6 +32,23 @@ if [ ! -f "docker-compose.yml" ]; then
 version: '3.8'
 
 services:
+  # Redis for distributed deduplication
+  redis:
+    image: redis:7-alpine
+    container_name: dsalta-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    networks:
+      - dsalta-network
+
   # PostgreSQL Database
   postgres:
     image: postgres:15-alpine
@@ -60,6 +78,9 @@ services:
       # Database
       DATABASE_URL: postgresql://dsalta:\${POSTGRES_PASSWORD:-dsalta_secure_password}@postgres:5432/dsalta_vendor_db
       
+      # Redis for session/cache
+      REDIS_URL: redis://redis:6379
+      
       # Application Configuration
       NODE_ENV: production
       PORT: 3000
@@ -75,6 +96,8 @@ services:
       - ./temp:/app/temp
     depends_on:
       postgres:
+        condition: service_healthy
+      redis:
         condition: service_healthy
     restart: unless-stopped
     healthcheck:
@@ -93,6 +116,9 @@ services:
     environment:
       # Database
       DATABASE_URL: postgresql://dsalta:\${POSTGRES_PASSWORD:-dsalta_secure_password}@postgres:5432/dsalta_vendor_db
+      
+      # Redis for distributed deduplication
+      REDIS_URL: redis://redis:6379
       
       # Kafka Configuration
       KAFKA_BROKERS: \${KAFKA_BROKERS:-35.225.196.0:9094}
@@ -128,6 +154,8 @@ services:
         condition: service_healthy
       dsalta-api:
         condition: service_healthy
+      redis:
+        condition: service_healthy
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "node", "-e", "console.log('Consumer health check')"]
@@ -140,6 +168,7 @@ services:
 
 volumes:
   postgres_data:
+  redis_data:
 
 networks:
   dsalta-network:
@@ -153,6 +182,9 @@ if [ ! -f ".env" ]; then
     cat > .env <<ENV_EOF
 # Database Configuration
 POSTGRES_PASSWORD=dsalta_secure_password
+
+# Redis Configuration
+REDIS_URL=redis://redis:6379
 
 # Kafka Configuration (GCP)
 KAFKA_BROKERS=35.225.196.0:9094
@@ -196,6 +228,7 @@ docker-compose up -d
 echo -e "${GREEN}✅ Deployment completed!${NC}"
 echo "📊 Services running:"
 echo "   - PostgreSQL: localhost:5432"
+echo "   - Redis: localhost:6379 (deduplication)"
 echo "   - API Server: http://localhost:3000"
 echo "   - Kafka Consumer: Running in background"
 echo ""
