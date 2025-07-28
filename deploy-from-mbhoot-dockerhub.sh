@@ -128,9 +128,9 @@ services:
       KAFKA_SASL_MECHANISM: \${KAFKA_SASL_MECHANISM:-SCRAM-SHA-256}
       
       # Kafka Topics
-      KAFKA_VENDOR_REQUEST_TOPIC: \${KAFKA_VENDOR_REQUEST_TOPIC:-vendor-request-topic}
-      KAFKA_VENDOR_RESPONSE_TOPIC: \${KAFKA_VENDOR_RESPONSE_TOPIC:-vendor-response-topic}
-      KAFKA_VENDOR_ERROR_TOPIC: \${KAFKA_VENDOR_ERROR_TOPIC:-vendor-error-topic}
+      KAFKA_VENDOR_REQUEST_TOPIC: \${KAFKA_VENDOR_REQUEST_TOPIC:-imp-domain-request}
+      KAFKA_VENDOR_RESPONSE_TOPIC: \${KAFKA_VENDOR_RESPONSE_TOPIC:-imp-domain-response}
+      KAFKA_VENDOR_ERROR_TOPIC: \${KAFKA_VENDOR_ERROR_TOPIC:-imp-domain-error}
       
       # Application Configuration
       NODE_ENV: production
@@ -194,9 +194,9 @@ KAFKA_SSL_ENABLED=true
 KAFKA_SASL_MECHANISM=SCRAM-SHA-256
 
 # Kafka Topics
-KAFKA_VENDOR_REQUEST_TOPIC=vendor-request-topic
-KAFKA_VENDOR_RESPONSE_TOPIC=vendor-response-topic
-KAFKA_VENDOR_ERROR_TOPIC=vendor-error-topic
+KAFKA_VENDOR_REQUEST_TOPIC=imp-domain-request
+KAFKA_VENDOR_RESPONSE_TOPIC=imp-domain-response
+KAFKA_VENDOR_ERROR_TOPIC=imp-domain-error
 
 # External API Keys
 SHODAN_API_KEY=your-shodan-api-key
