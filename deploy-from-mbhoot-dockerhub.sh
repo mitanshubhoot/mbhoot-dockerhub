@@ -94,6 +94,7 @@ services:
       GCP_PROJECT_ID: \${GCP_PROJECT_ID:-dsalta}
       GCS_BUCKET_NAME: \${GCS_BUCKET_NAME:-scanning-storage}
       GCS_SERVICE_ACCOUNT_KEY_PATH: \${GCS_SERVICE_ACCOUNT_KEY_PATH:-./dsalta-52250accd423.json}
+      GCS_CACHE_DURATION_HOURS: \${GCS_CACHE_DURATION_HOURS:-24}
       
     ports:
       - "3000:3000"
@@ -127,12 +128,9 @@ services:
       # Redis for distributed deduplication
       REDIS_URL: redis://redis:6379
       
-      # Kafka Configuration
+      # Kafka Configuration - PLAINTEXT
       KAFKA_BROKERS: \${KAFKA_BROKERS:-35.232.165.74:9094}
-      KAFKA_USERNAME: \${KAFKA_USERNAME:-dsalta}
-      KAFKA_PASSWORD: \${KAFKA_PASSWORD:-Dsalta@Toronto.}
-      KAFKA_SSL_ENABLED: \${KAFKA_SSL_ENABLED:-true}
-      KAFKA_SASL_MECHANISM: \${KAFKA_SASL_MECHANISM:-SCRAM-SHA-256}
+      KAFKA_SSL_ENABLED: \${KAFKA_SSL_ENABLED:-false}
       
       # Kafka Topics
       KAFKA_VENDOR_REQUEST_TOPIC: \${KAFKA_VENDOR_REQUEST_TOPIC:-imp-domain-request}
@@ -158,6 +156,7 @@ services:
       GCP_PROJECT_ID: \${GCP_PROJECT_ID:-dsalta}
       GCS_BUCKET_NAME: \${GCS_BUCKET_NAME:-scanning-storage}
       GCS_SERVICE_ACCOUNT_KEY_PATH: \${GCS_SERVICE_ACCOUNT_KEY_PATH:-./dsalta-52250accd423.json}
+      GCS_CACHE_DURATION_HOURS: \${GCS_CACHE_DURATION_HOURS:-24}
       
     volumes:
       - ./logs:/app/logs
@@ -200,12 +199,9 @@ POSTGRES_PASSWORD=dsalta_secure_password
 # Redis Configuration
 REDIS_URL=redis://redis:6379
 
-# Kafka Configuration (GCP)
+# Kafka Configuration (GCP) - PLAINTEXT
 KAFKA_BROKERS=35.232.165.74:9094
-KAFKA_USERNAME=dsalta
-KAFKA_PASSWORD=Dsalta@Toronto.
-KAFKA_SSL_ENABLED=true
-KAFKA_SASL_MECHANISM=SCRAM-SHA-256
+KAFKA_SSL_ENABLED=false
 
 # Kafka Topics
 KAFKA_VENDOR_REQUEST_TOPIC=imp-domain-request
