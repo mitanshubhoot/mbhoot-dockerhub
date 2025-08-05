@@ -113,7 +113,14 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
-    command: ["npm", "run", "start"]
+    # Auto-initialize services after startup
+    command: >
+      sh -c "
+        npm run start &
+        sleep 10 &&
+        curl -X POST http://localhost:3000/api/init &&
+        wait
+      "
     networks:
       - dsalta-network
 
