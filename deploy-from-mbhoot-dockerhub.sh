@@ -89,11 +89,17 @@ services:
       # Security
       ENCRYPTION_KEY: \${ENCRYPTION_KEY:-your-encryption-key-here}
       
+      # Google Cloud Storage Configuration
+      GCP_PROJECT_ID: \${GCP_PROJECT_ID:-dsalta}
+      GCS_BUCKET_NAME: \${GCS_BUCKET_NAME:-scanning-storage}
+      GCS_SERVICE_ACCOUNT_KEY_PATH: \${GCS_SERVICE_ACCOUNT_KEY_PATH:-./dsalta-52250accd423.json}
+      
     ports:
       - "3000:3000"
     volumes:
       - ./logs:/app/logs
       - ./temp:/app/temp
+      - ./dsalta-52250accd423.json:/app/dsalta-52250accd423.json:ro
     depends_on:
       postgres:
         condition: service_healthy
@@ -121,7 +127,7 @@ services:
       REDIS_URL: redis://redis:6379
       
       # Kafka Configuration
-      KAFKA_BROKERS: \${KAFKA_BROKERS:-35.225.196.0:9094}
+      KAFKA_BROKERS: \${KAFKA_BROKERS:-35.232.165.74:9094}
       KAFKA_USERNAME: \${KAFKA_USERNAME:-dsalta}
       KAFKA_PASSWORD: \${KAFKA_PASSWORD:-Dsalta@Toronto.}
       KAFKA_SSL_ENABLED: \${KAFKA_SSL_ENABLED:-true}
@@ -146,9 +152,15 @@ services:
       MAX_CONCURRENT_REQUESTS: \${MAX_CONCURRENT_REQUESTS:-10}
       REQUEST_TIMEOUT: \${REQUEST_TIMEOUT:-30000}
       
+      # Google Cloud Storage Configuration
+      GCP_PROJECT_ID: \${GCP_PROJECT_ID:-dsalta}
+      GCS_BUCKET_NAME: \${GCS_BUCKET_NAME:-scanning-storage}
+      GCS_SERVICE_ACCOUNT_KEY_PATH: \${GCS_SERVICE_ACCOUNT_KEY_PATH:-./dsalta-52250accd423.json}
+      
     volumes:
       - ./logs:/app/logs
       - ./temp:/app/temp
+      - ./dsalta-52250accd423.json:/app/dsalta-52250accd423.json:ro
     depends_on:
       postgres:
         condition: service_healthy
@@ -187,7 +199,7 @@ POSTGRES_PASSWORD=dsalta_secure_password
 REDIS_URL=redis://redis:6379
 
 # Kafka Configuration (GCP)
-KAFKA_BROKERS=35.225.196.0:9094
+KAFKA_BROKERS=35.232.165.74:9094
 KAFKA_USERNAME=dsalta
 KAFKA_PASSWORD=Dsalta@Toronto.
 KAFKA_SSL_ENABLED=true
@@ -207,6 +219,11 @@ LOG_LEVEL=info
 
 # Security
 ENCRYPTION_KEY=your-32-character-encryption-key-here
+
+# Google Cloud Storage Configuration
+GCP_PROJECT_ID=dsalta
+GCS_BUCKET_NAME=scanning-storage
+GCS_SERVICE_ACCOUNT_KEY_PATH=./dsalta-52250accd423.json
 
 # Rate Limiting
 KAFKA_CONSUMER_GROUP=dsalta-vendor-consumer-group
