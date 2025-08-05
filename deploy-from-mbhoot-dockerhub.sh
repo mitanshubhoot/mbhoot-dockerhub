@@ -85,6 +85,7 @@ services:
       NODE_ENV: production
       PORT: 3000
       LOG_LEVEL: \${LOG_LEVEL:-info}
+      KAFKAJS_NO_PARTITIONER_WARNING: "1"
       
       # Security
       ENCRYPTION_KEY: \${ENCRYPTION_KEY:-your-encryption-key-here}
@@ -142,6 +143,7 @@ services:
       NODE_ENV: production
       LOG_LEVEL: \${LOG_LEVEL:-info}
       API_BASE_URL: http://dsalta-api:3000
+      KAFKAJS_NO_PARTITIONER_WARNING: "1"
       
       # Security
       ENCRYPTION_KEY: \${ENCRYPTION_KEY:-your-encryption-key-here}
@@ -174,7 +176,7 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
-    command: ["node", "kafka-consumer.js"]
+    command: ["node", "kafka-consumer-external-queue.js"]
     networks:
       - dsalta-network
 
@@ -245,13 +247,20 @@ docker-compose up -d
 echo -e "${GREEN}✅ Deployment completed!${NC}"
 echo "📊 Services running:"
 echo "   - PostgreSQL: localhost:5432"
-echo "   - Redis: localhost:6379 (deduplication)"
+echo "   - Redis: localhost:6379 (external queue)"
 echo "   - API Server: http://localhost:3000"
-echo "   - Kafka Consumer: Running in background"
+echo "   - Kafka Consumer: Running with external queue"
+echo ""
+echo -e "${YELLOW}🔧 Next Steps - Start Queue Processor:${NC}"
+echo "   1. Wait for API server to be ready (check health endpoint)"
+echo "   2. Start queue processor: curl -X POST http://localhost:3000/api/queue/start"
+echo "   3. Check queue status: curl -X GET http://localhost:3000/api/queue/start"
 echo ""
 echo "📝 Useful commands:"
 echo "   - View logs: docker-compose logs -f"
 echo "   - View specific service logs: docker-compose logs -f dsalta-api"
+echo "   - API health check: curl http://localhost:3000/api/health"
+echo "   - Queue status: curl http://localhost:3000/api/queue/start"
 echo "   - Stop services: docker-compose down"
 echo "   - Restart: docker-compose restart"
 echo "   - Check status: docker-compose ps"
