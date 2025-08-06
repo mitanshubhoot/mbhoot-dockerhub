@@ -140,9 +140,9 @@ services:
       KAFKA_SSL_ENABLED: \${KAFKA_SSL_ENABLED:-false}
       
       # Kafka Topics
-              KAFKA_VENDOR_REQUEST_TOPIC: \${KAFKA_VENDOR_REQUEST_TOPIC:-new-vendor-request}
-        KAFKA_VENDOR_RESPONSE_TOPIC: \${KAFKA_VENDOR_RESPONSE_TOPIC:-new-vendor-response}
-        KAFKA_VENDOR_ERROR_TOPIC: \${KAFKA_VENDOR_ERROR_TOPIC:-new-vendor-error}
+      KAFKA_VENDOR_REQUEST_TOPIC: \${KAFKA_VENDOR_REQUEST_TOPIC:-new-vendor-request}
+      KAFKA_VENDOR_RESPONSE_TOPIC: \${KAFKA_VENDOR_RESPONSE_TOPIC:-new-vendor-response}
+      KAFKA_VENDOR_ERROR_TOPIC: \${KAFKA_VENDOR_ERROR_TOPIC:-new-vendor-error}
       
       # Application Configuration
       NODE_ENV: production
