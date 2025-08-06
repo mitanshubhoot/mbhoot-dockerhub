@@ -140,9 +140,9 @@ services:
       KAFKA_SSL_ENABLED: \${KAFKA_SSL_ENABLED:-false}
       
       # Kafka Topics
-      KAFKA_VENDOR_REQUEST_TOPIC: \${KAFKA_VENDOR_REQUEST_TOPIC:-imp-domain-request}
-      KAFKA_VENDOR_RESPONSE_TOPIC: \${KAFKA_VENDOR_RESPONSE_TOPIC:-imp-domain-response}
-      KAFKA_VENDOR_ERROR_TOPIC: \${KAFKA_VENDOR_ERROR_TOPIC:-imp-domain-error}
+              KAFKA_VENDOR_REQUEST_TOPIC: \${KAFKA_VENDOR_REQUEST_TOPIC:-new-vendor-request}
+        KAFKA_VENDOR_RESPONSE_TOPIC: \${KAFKA_VENDOR_RESPONSE_TOPIC:-new-vendor-response}
+        KAFKA_VENDOR_ERROR_TOPIC: \${KAFKA_VENDOR_ERROR_TOPIC:-new-vendor-error}
       
       # Application Configuration
       NODE_ENV: production
@@ -211,9 +211,9 @@ KAFKA_BROKERS=35.232.165.74:9094
 KAFKA_SSL_ENABLED=false
 
 # Kafka Topics
-KAFKA_VENDOR_REQUEST_TOPIC=imp-domain-request
-KAFKA_VENDOR_RESPONSE_TOPIC=imp-domain-response
-KAFKA_VENDOR_ERROR_TOPIC=imp-domain-error
+KAFKA_VENDOR_REQUEST_TOPIC=new-vendor-request
+KAFKA_VENDOR_RESPONSE_TOPIC=new-vendor-response
+KAFKA_VENDOR_ERROR_TOPIC=new-vendor-error
 
 # External API Keys
 SHODAN_API_KEY=your-shodan-api-key
