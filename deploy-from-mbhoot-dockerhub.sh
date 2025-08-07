@@ -154,7 +154,7 @@ services:
       ENCRYPTION_KEY: \${ENCRYPTION_KEY:-your-encryption-key-here}
       
       # Rate Limiting
-      KAFKA_CONSUMER_GROUP: \${KAFKA_CONSUMER_GROUP:-dsalta-vendor-consumer-group}
+      KAFKA_CONSUMER_GROUP: \${KAFKA_CONSUMER_GROUP:-new-vendor-consumer-group}
       KAFKA_PARTITION_CONCURRENCY: \${KAFKA_PARTITION_CONCURRENCY:-3}
       MAX_CONCURRENT_REQUESTS: \${MAX_CONCURRENT_REQUESTS:-10}
       REQUEST_TIMEOUT: \${REQUEST_TIMEOUT:-30000}
@@ -231,7 +231,7 @@ GCS_BUCKET_NAME=scanning-storage
 GCS_SERVICE_ACCOUNT_KEY_PATH=./dsalta-52250accd423.json
 
 # Rate Limiting
-KAFKA_CONSUMER_GROUP=dsalta-vendor-consumer-group
+KAFKA_CONSUMER_GROUP=new-vendor-consumer-group
 KAFKA_PARTITION_CONCURRENCY=3
 MAX_CONCURRENT_REQUESTS=10
 REQUEST_TIMEOUT=30000
