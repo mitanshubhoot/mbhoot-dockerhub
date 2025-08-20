@@ -136,13 +136,13 @@ services:
       REDIS_URL: redis://redis:6379
       
       # Kafka Configuration - PLAINTEXT
-      KAFKA_BROKERS: \${KAFKA_BROKERS:-35.225.196.0:9094}
+      KAFKA_BROKERS: \${KAFKA_BROKERS:-35.232.165.74:9094}
       KAFKA_SSL_ENABLED: \${KAFKA_SSL_ENABLED:-false}
       
       # Kafka Topics
-      KAFKA_VENDOR_REQUEST_TOPIC: \${KAFKA_VENDOR_REQUEST_TOPIC:-important-dom-request}
-      KAFKA_VENDOR_RESPONSE_TOPIC: \${KAFKA_VENDOR_RESPONSE_TOPIC:-important-dom-response}
-      KAFKA_VENDOR_ERROR_TOPIC: \${KAFKA_VENDOR_ERROR_TOPIC:-important-dom-error}
+      KAFKA_VENDOR_REQUEST_TOPIC: \${KAFKA_VENDOR_REQUEST_TOPIC:-new-vendor-request}
+      KAFKA_VENDOR_RESPONSE_TOPIC: \${KAFKA_VENDOR_RESPONSE_TOPIC:-new-vendor-response}
+      KAFKA_VENDOR_ERROR_TOPIC: \${KAFKA_VENDOR_ERROR_TOPIC:-new-vendor-error}
       
       # Application Configuration
       NODE_ENV: production
@@ -154,7 +154,7 @@ services:
       ENCRYPTION_KEY: \${ENCRYPTION_KEY:-your-encryption-key-here}
       
       # Rate Limiting
-      KAFKA_CONSUMER_GROUP: \${KAFKA_CONSUMER_GROUP:-important-dom-scan-group}
+      KAFKA_CONSUMER_GROUP: \${KAFKA_CONSUMER_GROUP:-new-vendor-consumer-group}
       KAFKA_PARTITION_CONCURRENCY: \${KAFKA_PARTITION_CONCURRENCY:-3}
       MAX_CONCURRENT_REQUESTS: \${MAX_CONCURRENT_REQUESTS:-10}
       REQUEST_TIMEOUT: \${REQUEST_TIMEOUT:-30000}
@@ -207,13 +207,13 @@ POSTGRES_PASSWORD=dsalta_secure_password
 REDIS_URL=redis://redis:6379
 
 # Kafka Configuration (GCP) - PLAINTEXT
-KAFKA_BROKERS=35.225.196.0:9094
+KAFKA_BROKERS=35.232.165.74:9094
 KAFKA_SSL_ENABLED=false
 
 # Kafka Topics
-KAFKA_VENDOR_REQUEST_TOPIC=important-dom-request
-KAFKA_VENDOR_RESPONSE_TOPIC=important-dom-response
-KAFKA_VENDOR_ERROR_TOPIC=important-dom-error
+KAFKA_VENDOR_REQUEST_TOPIC=new-vendor-request
+KAFKA_VENDOR_RESPONSE_TOPIC=new-vendor-response
+KAFKA_VENDOR_ERROR_TOPIC=new-vendor-error
 
 # External API Keys
 SHODAN_API_KEY=your-shodan-api-key
@@ -231,7 +231,7 @@ GCS_BUCKET_NAME=scanning-storage
 GCS_SERVICE_ACCOUNT_KEY_PATH=./dsalta-52250accd423.json
 
 # Rate Limiting
-KAFKA_CONSUMER_GROUP=important-dom-scan-group
+KAFKA_CONSUMER_GROUP=new-vendor-consumer-group
 KAFKA_PARTITION_CONCURRENCY=3
 MAX_CONCURRENT_REQUESTS=10
 REQUEST_TIMEOUT=30000
