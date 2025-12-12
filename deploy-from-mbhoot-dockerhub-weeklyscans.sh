@@ -95,6 +95,9 @@ services:
       GCS_BUCKET_NAME: \${GCS_BUCKET_NAME:-scanning-storage}
       GCS_SERVICE_ACCOUNT_KEY_PATH: \${GCS_SERVICE_ACCOUNT_KEY_PATH:-./dsalta-52250accd423.json}
       GCS_CACHE_DURATION_HOURS: \${GCS_CACHE_DURATION_HOURS:-24}
+
+      # External API Keys
+      SHODAN_API_KEY: \${SHODAN_API_KEY}
       
     ports:
       - "3000:3000"
@@ -164,6 +167,9 @@ services:
       GCS_BUCKET_NAME: \${GCS_BUCKET_NAME:-scanning-storage}
       GCS_SERVICE_ACCOUNT_KEY_PATH: \${GCS_SERVICE_ACCOUNT_KEY_PATH:-./dsalta-52250accd423.json}
       GCS_CACHE_DURATION_HOURS: \${GCS_CACHE_DURATION_HOURS:-24}
+
+      # External API Keys
+      SHODAN_API_KEY: \${SHODAN_API_KEY}
       
     volumes:
       - ./logs:/app/logs
