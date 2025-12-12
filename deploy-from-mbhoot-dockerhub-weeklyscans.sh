@@ -216,7 +216,7 @@ KAFKA_VENDOR_RESPONSE_TOPIC=new-vendor-response
 KAFKA_VENDOR_ERROR_TOPIC=new-vendor-error
 
 # External API Keys
-SHODAN_API_KEY=your-shodan-api-key
+SHODAN_API_KEY=kHGdJhelNGFbchHTnUs7YYlxevQUQMCv
 
 # Application Configuration
 NODE_ENV=production
